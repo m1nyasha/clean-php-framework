@@ -2,9 +2,9 @@
 
 return [
     '/home' => function () {
-        include __DIR__.'/../views/pages/home.php';
+        include APP_PATH.'/views/pages/home.php';
     },
     '/movies' => function () {
-        include __DIR__.'/../views/pages/movies.php';
+        include APP_PATH.'/views/pages/movies.php';
     }
 ];
