@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Kernel\Controller\Controller;
-use App\Kernel\Http\Redirect;
 
 class MovieController extends Controller
 {
@@ -24,7 +23,7 @@ class MovieController extends Controller
         ]);
 
         if (! $validation) {
-            (new Redirect())->to('/admin/movies/create');
+            $this->redirect('/admin/movies/create');
             // dd('Validation failed', $this->request()->errors());
         }
 
