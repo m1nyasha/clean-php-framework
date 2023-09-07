@@ -2,19 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Kernel\View\View;
+use App\Kernel\Controller\Controller;
 
-class HomeController
+class HomeController extends Controller
 {
-    private View $view;
-
-    public function __construct()
-    {
-        $this->view = new View();
-    }
-
     public function index(): void
     {
-        $this->view->page('home');
+        $this->view('home');
     }
 }
