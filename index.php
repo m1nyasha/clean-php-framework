@@ -2,6 +2,8 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
-echo 'Ура! Мы подключили автолоадер!';
+$routes = require __DIR__.'/config/routes.php';
 
-dump(['Можно даже посмотреть на работу функции dump()']);
+$uri = ltrim($_SERVER['REQUEST_URI'], '/');
+
+$routes[$uri]();
