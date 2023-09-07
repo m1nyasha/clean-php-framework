@@ -7,7 +7,5 @@ use App\Kernel\Router\Route;
 return [
     Route::get('/home', [HomeController::class, 'index']),
     Route::get('/movies', [MovieController::class, 'index']),
-    Route::get('/test', function () {
-        echo 'Test route';
-    }),
+    Route::get('/admin/movies/create', [MovieController::class, 'create']),
 ];

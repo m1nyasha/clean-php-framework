@@ -10,4 +10,9 @@ class MovieController extends Controller
     {
         $this->view('movies');
     }
+
+    public function create(): void
+    {
+        $this->view('admin/movies/create');
+    }
 }
