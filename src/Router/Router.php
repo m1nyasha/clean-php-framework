@@ -16,9 +16,23 @@ class Router
 
     public function dispatch(string $uri, string $method): void
     {
-        $routes = $this->routes();
+        $route = $this->findRoute($uri, $method);
 
-        $routes[$uri]();
+        if (! $route) {
+            echo '404 | Страница не найдена';
+            exit;
+        }
+
+        $route->getAction()();
+    }
+
+    private function findRoute(string $uri, string $method): bool|Route
+    {
+        if (! isset($this->routes[$method][$uri])) {
+            return false;
+        }
+
+        return $this->routes[$method][$uri];
     }
 
     private function initRoutes(): void

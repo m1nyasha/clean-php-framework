@@ -7,7 +7,7 @@ class Route
     public function __construct(
         private string $uri,
         private string $method,
-        private        $action
+        private $action
     ) {
     }
 
