@@ -41,4 +41,20 @@ class Request
     {
         $this->validator = $validator;
     }
+
+    public function validate(array $roles): bool
+    {
+        $data = [];
+
+        foreach ($roles as $field => $role) {
+            $data[$field] = $this->input($field);
+        }
+
+        return $this->validator->validate($data, $roles);
+    }
+
+    public function errors(): array
+    {
+        return $this->validator->errors();
+    }
 }
