@@ -1,0 +1,7 @@
+name: clean-php-framework
+recipe: lamp
+config:
+  webroot: .
+services:
+  phpmyadmin:
+    type: phpmyadmin
