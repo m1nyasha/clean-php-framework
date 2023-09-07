@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\Kernel\View\View $view
+ * @var \App\Kernel\Session\Session $session
  */
 ?>
 
@@ -8,6 +9,13 @@
 <h1>Create movie</h1>
 
 <form action="/admin/movies/store" method="post">
+    <?php if ($session->has('errors')) { ?>
+        <ul>
+            <?php foreach ($session->getFlash('errors') as $error) { ?>
+                <li style="color: red;"><?php echo $error ?></li>
+            <?php } ?>
+        </ul>
+    <?php } ?>
     <div>
         <label for="name">
             Name

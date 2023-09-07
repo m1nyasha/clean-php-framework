@@ -23,8 +23,8 @@ class MovieController extends Controller
         ]);
 
         if (! $validation) {
+            $this->session()->set('errors', $this->request()->errors());
             $this->redirect('/admin/movies/create');
-            // dd('Validation failed', $this->request()->errors());
         }
 
         dd('All good');

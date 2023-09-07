@@ -2,13 +2,19 @@
 
 namespace App\Kernel\View;
 
+use App\Kernel\Container\Container;
 use App\Kernel\Exceptions\ViewNotFoundException;
 
 class View
 {
+    public function __construct(
+        private Container $container
+    ) {
+    }
+
     public function page(string $name): void
     {
-        extract(['view' => $this]);
+        extract($this->defaultData());
 
         $viewPath = APP_PATH."/views/pages/$name.php";
 
@@ -28,5 +34,13 @@ class View
         }
 
         include $componentPath;
+    }
+
+    private function defaultData(): array
+    {
+        return [
+            'view' => $this,
+            'session' => $this->container->session,
+        ];
     }
 }
