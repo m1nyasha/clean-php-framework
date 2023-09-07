@@ -2,9 +2,9 @@
 
 return [
     '/home' => function () {
-        echo '<h1>Home page</h1>';
+        include __DIR__.'/../views/pages/home.php';
     },
     '/movies' => function () {
-        echo '<h1>Movies page</h1>';
+        include __DIR__.'/../views/pages/movies.php';
     }
 ];
