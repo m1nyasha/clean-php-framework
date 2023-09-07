@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Kernel\Controller\Controller;
-use App\Kernel\Validator\Validator;
 
 class MovieController extends Controller
 {
@@ -19,12 +18,14 @@ class MovieController extends Controller
 
     public function store(): void
     {
-        $validator = new Validator();
+        $validation = $this->request()->validate([
+            'name' => ['required', 'min:3', 'max:255'],
+        ]);
 
-        $validator->validate(['name' => null], ['name' => ['required', 'min:3']]);
+        if (! $validation) {
+            dd('Validation failed', $this->request()->errors());
+        }
 
-        dd($validator->errors());
-
-        dd($this->request()->input('name'));
+        dd('All good');
     }
 }
