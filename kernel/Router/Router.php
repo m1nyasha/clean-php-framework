@@ -34,6 +34,7 @@ class Router
             $controller = new $controller();
 
             call_user_func([$controller, 'setView'], $this->container->view);
+            call_user_func([$controller, 'setRequest'], $this->container->request);
             call_user_func([$controller, $action]);
         } else {
             call_user_func($route->getAction());
