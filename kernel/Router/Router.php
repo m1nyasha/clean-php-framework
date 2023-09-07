@@ -36,6 +36,7 @@ class Router
             call_user_func([$controller, 'setView'], $this->container->view);
             call_user_func([$controller, 'setRequest'], $this->container->request);
             call_user_func([$controller, 'setRedirect'], $this->container->redirect);
+            call_user_func([$controller, 'setSession'], $this->container->session);
 
             call_user_func([$controller, $action]);
         } else {

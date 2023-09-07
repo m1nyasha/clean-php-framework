@@ -5,6 +5,7 @@ namespace App\Kernel\Container;
 use App\Kernel\Http\Redirect;
 use App\Kernel\Http\Request;
 use App\Kernel\Router\Router;
+use App\Kernel\Session\Session;
 use App\Kernel\Validator\Validator;
 use App\Kernel\View\View;
 
@@ -20,6 +21,8 @@ class Container
 
     public readonly Redirect $redirect;
 
+    public readonly Session $session;
+
     public function __construct()
     {
         $this->registerServices();
@@ -27,6 +30,7 @@ class Container
 
     public function registerServices(): void
     {
+        $this->session = new Session();
         $this->request = Request::createFromGlobals();
         $this->view = new View();
         $this->validator = new Validator();
