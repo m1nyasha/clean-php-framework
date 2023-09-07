@@ -1,6 +1,7 @@
 name: clean-php-framework
 recipe: lamp
 config:
+  php: 8.2
   webroot: .
 services:
   phpmyadmin:
