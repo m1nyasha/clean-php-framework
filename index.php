@@ -1,6 +1,6 @@
 <?php
 
-use App\App;
+use App\Kernel\App;
 
 define('APP_PATH', __DIR__);
 
