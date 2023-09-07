@@ -7,11 +7,11 @@
 <?php $view->component('start') ?>
 <h1>Create movie</h1>
 
-<form action="">
+<form action="/admin/movies/store" method="post">
     <div>
-        <label for="">
+        <label for="name">
             Name
-            <input type="text">
+            <input type="text" id="name" name="name">
         </label>
     </div>
     <div>

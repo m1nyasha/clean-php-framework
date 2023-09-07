@@ -15,4 +15,9 @@ class MovieController extends Controller
     {
         $this->view('admin/movies/create');
     }
+
+    public function store(): void
+    {
+        dd('store movie');
+    }
 }
