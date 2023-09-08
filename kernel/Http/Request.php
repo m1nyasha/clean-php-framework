@@ -75,4 +75,26 @@ class Request implements RequestInterface
             $this->files[$key]['size'],
         );
     }
+
+    public function url(): string
+    {
+        return "{$this->schema()}://{$this->host()}";
+    }
+
+    public function server(string $key, $default = null): mixed
+    {
+        return $this->server[$key] ?? $default;
+    }
+
+    public function schema(): string
+    {
+        return $this->server('HTTP_X_FORWARDED_PROTO')
+            ?? $this->server('REQUEST_SCHEME')
+            ?? 'http';
+    }
+
+    public function host(): string
+    {
+        return $this->server('HTTP_HOST') ?? 'localhost';
+    }
 }

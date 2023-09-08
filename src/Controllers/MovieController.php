@@ -13,6 +13,8 @@ class MovieController extends Controller
 
     public function create(): void
     {
+        dd($this->request());
+
         $this->view('admin/movies/create');
     }
 
