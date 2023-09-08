@@ -2,13 +2,13 @@
 
 namespace App\Kernel\View;
 
-use App\Kernel\Container\Container;
 use App\Kernel\Exceptions\ViewNotFoundException;
+use App\Kernel\Session\SessionInterface;
 
 class View implements ViewInterface
 {
     public function __construct(
-        private Container $container
+        private SessionInterface $session
     ) {
     }
 
@@ -40,7 +40,7 @@ class View implements ViewInterface
     {
         return [
             'view' => $this,
-            'session' => $this->container->session,
+            'session' => $this->session,
         ];
     }
 }
