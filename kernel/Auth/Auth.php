@@ -16,7 +16,7 @@ class Auth implements AuthInterface
     public function attempt(string $username, string $password): bool
     {
         $user = $this->db->first('users', [
-            'username' => $username,
+            'email' => $username,
         ]);
 
         if (! $user) {

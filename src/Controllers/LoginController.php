@@ -26,6 +26,6 @@ class LoginController extends Controller
         $email = $this->request()->input('email');
         $password = $this->request()->input('password');
 
-        dd('do login logic here');
+        dump($this->auth()->attempt($email, $password), $_SESSION);
     }
 }
