@@ -18,7 +18,6 @@ class MovieController extends Controller
 
     public function store(): void
     {
-
         $image = $this->request()->file('image');
 
         dd($image->move('movies'));
