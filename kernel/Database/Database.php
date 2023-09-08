@@ -11,6 +11,16 @@ class Database implements DatabaseInterface
     public function __construct(
         private ConfigInterface $config
     ) {
+        $this->connect();
+    }
+
+    public function insert(string $table, array $data): int
+    {
+        // TODO: Implement insert() method.
+    }
+
+    public function connect(): void
+    {
         $driver = $this->config->get('database.driver');
         $host = $this->config->get('database.host');
         $port = $this->config->get('database.port');
@@ -29,10 +39,5 @@ class Database implements DatabaseInterface
             echo "Connection failed: {$exception->getMessage()}";
             exit;
         }
-    }
-
-    public function insert(string $table, array $data): int
-    {
-        // TODO: Implement insert() method.
     }
 }
