@@ -33,6 +33,11 @@ class Container
         $this->view = new View($this->session);
         $this->redirect = new Redirect();
         $this->request->setValidator(new Validator());
-        $this->router = new Router($this);
+        $this->router = new Router(
+            $this->view,
+            $this->request,
+            $this->redirect,
+            $this->session
+        );
     }
 }

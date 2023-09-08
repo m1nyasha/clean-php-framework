@@ -2,8 +2,11 @@
 
 namespace App\Kernel\Router;
 
-use App\Kernel\Container\Container;
 use App\Kernel\Controller\Controller;
+use App\Kernel\Http\Interfaces\RedirectInterface;
+use App\Kernel\Http\Interfaces\RequestInterface;
+use App\Kernel\Session\SessionInterface;
+use App\Kernel\View\ViewInterface;
 
 class Router implements RouterInterface
 {
@@ -13,7 +16,10 @@ class Router implements RouterInterface
     ];
 
     public function __construct(
-        private Container $container
+        private ViewInterface $view,
+        private RequestInterface $request,
+        private RedirectInterface $redirect,
+        private SessionInterface $session
     ) {
         $this->initRoutes();
     }
@@ -33,10 +39,10 @@ class Router implements RouterInterface
             /** @var Controller $controller */
             $controller = new $controller();
 
-            call_user_func([$controller, 'setView'], $this->container->view);
-            call_user_func([$controller, 'setRequest'], $this->container->request);
-            call_user_func([$controller, 'setRedirect'], $this->container->redirect);
-            call_user_func([$controller, 'setSession'], $this->container->session);
+            call_user_func([$controller, 'setView'], $this->view);
+            call_user_func([$controller, 'setRequest'], $this->request);
+            call_user_func([$controller, 'setRedirect'], $this->redirect);
+            call_user_func([$controller, 'setSession'], $this->session);
 
             call_user_func([$controller, $action]);
         } else {
