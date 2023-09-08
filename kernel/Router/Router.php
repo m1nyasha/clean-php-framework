@@ -7,6 +7,7 @@ use App\Kernel\Controller\Controller;
 use App\Kernel\Database\DatabaseInterface;
 use App\Kernel\Http\Interfaces\RedirectInterface;
 use App\Kernel\Http\Interfaces\RequestInterface;
+use App\Kernel\Middleware\AbstractMiddleware;
 use App\Kernel\Session\SessionInterface;
 use App\Kernel\View\ViewInterface;
 
@@ -35,6 +36,22 @@ class Router implements RouterInterface
         if (! $route) {
             echo '404 | Страница не найдена';
             exit;
+        }
+
+        if ($route->hasMiddlewares()) {
+            $middlewares = $route->getMiddlewares();
+
+            foreach ($middlewares as $middleware) {
+                /** @var AbstractMiddleware $middleware */
+                $middleware = new $middleware(
+                    $this->request,
+                    $this->session,
+                    $this->auth,
+                    $this->redirect
+                );
+
+                $middleware->handle();
+            }
         }
 
         if (is_array($route->getAction())) {
