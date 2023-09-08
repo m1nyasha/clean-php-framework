@@ -2,6 +2,8 @@
 
 namespace App\Kernel\Container;
 
+use App\Kernel\Config\Config;
+use App\Kernel\Database\Database;
 use App\Kernel\Http\Redirect;
 use App\Kernel\Http\Request;
 use App\Kernel\Router\Router;
@@ -21,6 +23,10 @@ class Container
 
     public readonly Session $session;
 
+    public readonly Config $config;
+
+    public readonly Database $database;
+
     public function __construct()
     {
         $this->registerServices();
@@ -28,6 +34,8 @@ class Container
 
     public function registerServices(): void
     {
+        $this->config = new Config();
+        $this->database = new Database($this->config);
         $this->session = new Session();
         $this->request = Request::createFromGlobals();
         $this->view = new View($this->session);

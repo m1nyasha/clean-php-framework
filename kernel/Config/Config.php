@@ -8,7 +8,7 @@ class Config implements ConfigInterface
     {
         [$config, $param] = explode('.', $key);
 
-        $config = require_once APP_PATH."/config/$config.php";
+        $config = require APP_PATH."/config/$config.php";
 
         return $config[$param] ?? $default;
     }
