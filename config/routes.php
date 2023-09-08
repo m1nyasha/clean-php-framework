@@ -5,11 +5,12 @@ use App\Controllers\LoginController;
 use App\Controllers\MovieController;
 use App\Controllers\RegisterController;
 use App\Kernel\Router\Route;
+use App\Middlewares\AuthMiddleware;
 
 return [
     Route::get('/home', [HomeController::class, 'index']),
     Route::get('/movies', [MovieController::class, 'index']),
-    Route::get('/admin/movies/create', [MovieController::class, 'create']),
+    Route::get('/admin/movies/create', [MovieController::class, 'create'], [AuthMiddleware::class]),
     Route::post('/admin/movies/store', [MovieController::class, 'store']),
     Route::get('/register', [RegisterController::class, 'index']),
     Route::post('/register', [RegisterController::class, 'register']),
