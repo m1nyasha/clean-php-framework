@@ -2,6 +2,8 @@
 
 namespace App\Kernel\Container;
 
+use App\Kernel\Auth\Auth;
+use App\Kernel\Auth\AuthInterface;
 use App\Kernel\Config\Config;
 use App\Kernel\Database\Database;
 use App\Kernel\Http\Redirect;
@@ -27,6 +29,8 @@ class Container
 
     public readonly Database $database;
 
+    public readonly AuthInterface $auth;
+
     public function __construct()
     {
         $this->registerServices();
@@ -48,5 +52,6 @@ class Container
             $this->session,
             $this->database
         );
+        $this->auth = new Auth($this->database);
     }
 }

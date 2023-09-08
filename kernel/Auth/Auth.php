@@ -2,8 +2,15 @@
 
 namespace App\Kernel\Auth;
 
+use App\Kernel\Database\DatabaseInterface;
+
 class Auth implements AuthInterface
 {
+    public function __construct(
+        private DatabaseInterface $db
+    ) {
+    }
+
     public function attempt(string $username, string $password): bool
     {
         // TODO: Implement attempt() method.
