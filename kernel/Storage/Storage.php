@@ -26,7 +26,7 @@ class Storage implements StorageInterface
     {
         $host = $this->config->get('app.url') ?? $this->request->url();
 
-        return "$host/storage/$path";
+        return "$host/$path";
     }
 
     private function storagePath(string $path = ''): string

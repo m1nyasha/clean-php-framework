@@ -13,8 +13,6 @@ class MovieController extends Controller
 
     public function create(): void
     {
-        dd($this->request());
-
         $this->view('admin/movies/create');
     }
 
@@ -22,7 +20,11 @@ class MovieController extends Controller
     {
         $image = $this->request()->file('image');
 
-        dd($image->move('movies'));
+        dd(
+            $this->storage()->url(
+                $image->move('movies')
+            )
+        );
 
         $validation = $this->request()->validate([
             'name' => ['required', 'min:3', 'max:255'],

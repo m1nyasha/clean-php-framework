@@ -32,6 +32,7 @@ class Container
     public readonly Database $database;
 
     public readonly AuthInterface $auth;
+
     public readonly StorageInterface $storage;
 
     public function __construct()
@@ -57,6 +58,7 @@ class Container
             $this->session,
             $this->database,
             $this->auth,
+            $this->storage
         );
     }
 }
