@@ -5,7 +5,7 @@ namespace App\Kernel\Router;
 use App\Kernel\Container\Container;
 use App\Kernel\Controller\Controller;
 
-class Router
+class Router implements RouterInterface
 {
     private array $routes = [
         'GET' => [],

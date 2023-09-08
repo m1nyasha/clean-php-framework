@@ -5,7 +5,7 @@ namespace App\Kernel\View;
 use App\Kernel\Container\Container;
 use App\Kernel\Exceptions\ViewNotFoundException;
 
-class View
+class View implements ViewInterface
 {
     public function __construct(
         private Container $container
