@@ -16,11 +16,12 @@ class Request implements RequestInterface
         public readonly array $server,
         public readonly array $cookie,
     ) {
+        $this->validator = new Validator();
     }
 
     public static function createFromGlobals(): static
     {
-        return new static($_GET, $_POST, $_FILES, $_SERVER, $_COOKIE,);
+        return new static($_GET, $_POST, $_FILES, $_SERVER, $_COOKIE);
     }
 
     public function uri(): string
@@ -36,11 +37,6 @@ class Request implements RequestInterface
     public function input(string $key, $default = null): mixed
     {
         return $this->post[$key] ?? $this->get[$key] ?? $default;
-    }
-
-    public function setValidator(Validator $validator): void
-    {
-        $this->validator = $validator;
     }
 
     public function validate(array $roles): bool
