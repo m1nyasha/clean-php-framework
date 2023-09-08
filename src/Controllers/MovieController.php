@@ -27,10 +27,10 @@ class MovieController extends Controller
             $this->redirect('/admin/movies/create');
         }
 
-        $this->db()->insert('movies', [
+        $id = $this->db()->insert('movies', [
             'name' => $this->request()->input('name'),
         ]);
 
-        dd('All good');
+        dd("Фильм с ID $id успешно добавлен");
     }
 }
