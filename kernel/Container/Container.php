@@ -52,6 +52,6 @@ class Container
             $this->session,
             $this->database
         );
-        $this->auth = new Auth($this->database);
+        $this->auth = new Auth($this->database, $this->session);
     }
 }
