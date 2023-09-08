@@ -11,7 +11,7 @@ class LoginController extends Controller
         $this->view('login');
     }
 
-    public function login()
+    public function login(): void
     {
         $validation = $this->request()->validate([
             'email' => ['required', 'email'],
@@ -26,6 +26,19 @@ class LoginController extends Controller
         $email = $this->request()->input('email');
         $password = $this->request()->input('password');
 
-        dump($this->auth()->attempt($email, $password), $_SESSION);
+        if ($this->auth()->attempt($email, $password)) {
+            $this->redirect('/home');
+        }
+
+        $this->session()->set('error', 'Проверьте правильность введенных данных');
+
+        $this->redirect('/login');
+    }
+
+    public function logout(): void
+    {
+        $this->auth()->logout();
+
+        $this->redirect('/login');
     }
 }
