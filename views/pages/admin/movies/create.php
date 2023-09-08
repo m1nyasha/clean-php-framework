@@ -8,7 +8,7 @@
 <?php $view->component('start') ?>
 <h1>Create movie</h1>
 
-<form action="/admin/movies/store" method="post">
+<form action="/admin/movies/store" method="post" enctype="multipart/form-data">
     <?php if ($session->has('errors')) { ?>
         <ul>
             <?php foreach ($session->getFlash('errors') as $error) { ?>
@@ -20,6 +20,12 @@
         <label for="name">
             Name
             <input type="text" id="name" name="name">
+        </label>
+    </div>
+    <div>
+        <label for="image">
+            Image
+            <input type="file" id="image" name="image">
         </label>
     </div>
     <div>

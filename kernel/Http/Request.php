@@ -58,4 +58,9 @@ class Request implements RequestInterface
     {
         return $this->validator->errors();
     }
+
+    public function file(string $key, $default = null): mixed
+    {
+        return $this->files[$key] ?? $default;
+    }
 }

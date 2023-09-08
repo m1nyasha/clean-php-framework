@@ -12,6 +12,8 @@ interface RequestInterface
 
     public function input(string $key, $default = null): mixed;
 
+    public function file(string $key, $default = null): mixed;
+
     public function validate(array $roles): bool;
 
     public function errors(): array;
