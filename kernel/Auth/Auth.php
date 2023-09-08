@@ -50,6 +50,6 @@ class Auth implements AuthInterface
 
     public function logout(): void
     {
-        // TODO: Implement logout() method.
+        $this->session->remove('user_id');
     }
 }
