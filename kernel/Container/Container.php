@@ -42,10 +42,10 @@ class Container
         $this->database = new Database($this->config);
         $this->session = new Session();
         $this->request = Request::createFromGlobals();
-        $this->view = new View($this->session);
         $this->redirect = new Redirect();
         $this->request->setValidator(new Validator());
         $this->auth = new Auth($this->database, $this->session);
+        $this->view = new View($this->session, $this->auth);
         $this->router = new Router(
             $this->view,
             $this->request,
