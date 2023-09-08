@@ -34,7 +34,7 @@ class Auth implements AuthInterface
 
     public function check(): bool
     {
-        // TODO: Implement check() method.
+        return $this->session->has('user_id');
     }
 
     public function user(): ?array
