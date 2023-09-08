@@ -10,4 +10,17 @@ class RegisterController extends Controller
     {
         $this->view('register');
     }
+
+    public function register(): void
+    {
+        $validation = $this->request()->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8'],
+        ]);
+
+        if (! $validation) {
+            $this->session()->set('errors', $this->request()->errors());
+            $this->redirect('/register');
+        }
+    }
 }
