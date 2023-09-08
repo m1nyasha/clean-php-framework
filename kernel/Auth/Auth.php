@@ -39,7 +39,13 @@ class Auth implements AuthInterface
 
     public function user(): ?array
     {
-        // TODO: Implement user() method.
+        if (! $this->check()) {
+            return null;
+        }
+
+        return $this->db->first('users', [
+            'id' => $this->session->get('user_id'),
+        ]);
     }
 
     public function logout(): void
