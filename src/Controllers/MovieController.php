@@ -27,7 +27,9 @@ class MovieController extends Controller
             $this->redirect('/admin/movies/create');
         }
 
-        // $this->db()->insert()
+        $this->db()->insert('movies', [
+            'name' => $this->request()->input('name'),
+        ]);
 
         dd('All good');
     }
