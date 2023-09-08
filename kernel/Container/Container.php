@@ -45,13 +45,14 @@ class Container
         $this->view = new View($this->session);
         $this->redirect = new Redirect();
         $this->request->setValidator(new Validator());
+        $this->auth = new Auth($this->database, $this->session);
         $this->router = new Router(
             $this->view,
             $this->request,
             $this->redirect,
             $this->session,
-            $this->database
+            $this->database,
+            $this->auth,
         );
-        $this->auth = new Auth($this->database, $this->session);
     }
 }
