@@ -27,6 +27,8 @@ class View implements ViewInterface
 
     public function component(string $name): void
     {
+        extract($this->defaultData());
+
         $componentPath = APP_PATH."/views/components/$name.php";
 
         if (! file_exists($componentPath)) {
